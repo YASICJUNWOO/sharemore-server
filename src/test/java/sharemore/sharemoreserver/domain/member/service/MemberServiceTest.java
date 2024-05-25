@@ -51,4 +51,20 @@ class MemberServiceTest {
         assertThat(findMember).isEqualTo(savedMember);
     }
 
+    @Test
+    public void 로그인() {
+
+        //given
+        Member member = Member.builder()
+                .email("testEmail")
+                .password("testPassword").build();
+
+        //when
+        memberService.join(member);
+        boolean login = memberService.login("testEmail", "testPassword");
+
+        //then
+        assertThat(login).isTrue();
+    }
+
 }
