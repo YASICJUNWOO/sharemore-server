@@ -19,4 +19,10 @@ public class MemberService implements MemberServiceImpl{
     public Member findByEmail(String testEmail) {
         return memberRepository.findByEmail(testEmail);
     }
+
+    @Override
+    public boolean login(String testEmail, String testPassword) {
+        Member member = memberRepository.findByEmail(testEmail);
+        return member.getPassword().equals(testPassword);
+    }
 }
