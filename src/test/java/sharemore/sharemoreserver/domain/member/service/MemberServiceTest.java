@@ -31,4 +31,19 @@ class MemberServiceTest {
 
     }
 
+    @Test
+    public void 이메일로_회원찾기() {
+        //given
+        Member member = Member.builder()
+                .email("testEmail")
+                .password("testPassword").build();
+
+        //when
+        Member savedMember = memberService.join(member);
+        Member findMember = memberService.findByEmail("testEmail");
+
+        //then
+        assertThat(findMember).isEqualTo(savedMember);
+    }
+
 }
