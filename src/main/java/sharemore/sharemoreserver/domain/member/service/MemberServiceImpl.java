@@ -1,4 +1,8 @@
 package sharemore.sharemoreserver.domain.member.service;
 
+import sharemore.sharemoreserver.domain.member.Member;
+
 public interface MemberServiceImpl {
+
+    Member join(Member member);
 }
