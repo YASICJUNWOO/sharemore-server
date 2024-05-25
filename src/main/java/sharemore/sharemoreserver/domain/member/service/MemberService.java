@@ -15,4 +15,8 @@ public class MemberService implements MemberServiceImpl{
         return memberRepository.save(member);
     }
 
+    @Override
+    public Member findByEmail(String testEmail) {
+        return memberRepository.findByEmail(testEmail);
+    }
 }
