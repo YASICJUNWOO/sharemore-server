@@ -16,10 +16,22 @@ class MemberController {
 
     private final MemberService memberService;
 
-    @PostMapping
+    @PostMapping("/sign-up")
     public ResponseEntity<Member> join(@RequestBody Member member) {
         Member savedMember = memberService.join(member);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedMember);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Member> login(@RequestBody Member member) {
+
+        boolean isLogin = memberService.login(member.getEmail(), member.getPassword());
+
+        if(isLogin) {
+            return ResponseEntity.status(HttpStatus.OK).body(member);
+        }
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
 }
