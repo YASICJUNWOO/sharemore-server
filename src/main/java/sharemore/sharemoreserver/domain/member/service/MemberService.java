@@ -12,6 +12,11 @@ public class MemberService implements MemberServiceImpl{
 
     @Override
     public Member join(Member member) {
+
+        if(memberRepository.findByEmail(member.getEmail()) != null) {
+            throw new IllegalStateException("이미 존재하는 회원 이메일입니다.");
+        }
+
         return memberRepository.save(member);
     }
 
