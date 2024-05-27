@@ -67,4 +67,20 @@ class MemberServiceTest {
         assertThat(login).isTrue();
     }
 
+    @Test
+    public void 로그인_실패() {
+
+        //given
+        Member member = Member.builder()
+                .email("testEmail")
+                .password("testPassword").build();
+
+        //when
+        memberService.join(member);
+        boolean login = memberService.login("testEmail", "wrongPassword");
+
+        //then
+        assertThat(login).isFalse();
+    }
+
 }
