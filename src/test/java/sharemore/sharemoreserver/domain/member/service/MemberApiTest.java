@@ -64,5 +64,38 @@ public class MemberApiTest extends ApiTest {
         assertThat(extract.statusCode()).isEqualTo(HttpStatus.OK.value());
     }
 
+    @Test
+    public void 로그인_실패_API() {
+
+        //given
+        Member member = Member.builder()
+                .email("testEmail")
+                .password("testPassword").build();
+
+        Member testMember = Member.builder()
+                .email("testEmail")
+                .password("testPassword2").build();
+
+        RestAssured.given().log().all()
+                .body(member)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .when()
+                .post("/api/member/sign-up")
+                .then()
+                .log().all().extract();
+
+        //when
+        final ExtractableResponse<Response> extract = RestAssured.given().log().all()
+                .body(testMember)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .when()
+                .post("/api/member/login")
+                .then()
+                .log().all().extract();
+
+        //then
+        assertThat(extract.statusCode()).isEqualTo(HttpStatus.UNAUTHORIZED.value());
+    }
+
 
 }
