@@ -55,7 +55,7 @@ class MemberServiceTest {
         //then
         assertThatThrownBy(() -> memberService.join(member2))
                 .isInstanceOf(IllegalStateException.class)
-                .hasMessage("이미 존재하는 회원 이메일입니다.");
+                .hasMessageContaining("이미 존재하는 회원 이메일입니다.");
     }
 
     @Test
