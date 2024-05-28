@@ -22,6 +22,7 @@ public class MemberApiTest extends ApiTest {
         //when
         final ExtractableResponse<Response> extract = MemberStep.회원등록요청(member);
 
+
         //then
         assertThat(extract.statusCode()).isEqualTo(HttpStatus.CREATED.value());
 
