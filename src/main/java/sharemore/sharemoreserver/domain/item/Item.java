@@ -1,10 +1,8 @@
 package sharemore.sharemoreserver.domain.item;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+import sharemore.sharemoreserver.domain.member.Member;
 
 @Entity
 @Getter
@@ -25,5 +23,9 @@ public class Item {
     private String category;
 
     private int price;
+
+    @ManyToOne
+    @JoinColumn(name = "owner_id", nullable = false)
+    private Member owner;
 
 }
