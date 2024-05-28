@@ -1,11 +1,9 @@
 package sharemore.sharemoreserver.domain.member.service;
 
-import io.restassured.RestAssured;
 import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import sharemore.sharemoreserver.ApiTest;
 import sharemore.sharemoreserver.domain.member.Member;
 
@@ -22,13 +20,7 @@ public class MemberApiTest extends ApiTest {
                 .password("testPassword").build();
 
         //when
-        final ExtractableResponse<Response> extract = RestAssured.given().log().all()
-                .body(member)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .when()
-                .post("/api/member/sign-up")
-                .then()
-                .log().all().extract();
+        final ExtractableResponse<Response> extract = MemberStep.회원등록요청(member);
 
         //then
         assertThat(extract.statusCode()).isEqualTo(HttpStatus.CREATED.value());
@@ -43,22 +35,10 @@ public class MemberApiTest extends ApiTest {
                 .email("testEmail")
                 .password("testPassword").build();
 
-        RestAssured.given().log().all()
-                .body(member)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .when()
-                .post("/api/member/sign-up")
-                .then()
-                .log().all().extract();
+        MemberStep.회원등록요청(member);
 
         //when
-        final ExtractableResponse<Response> extract = RestAssured.given().log().all()
-                .body(member)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .when()
-                .post("/api/member/login")
-                .then()
-                .log().all().extract();
+        final ExtractableResponse<Response> extract = MemberStep.로그인요청(member);
 
         //then
         assertThat(extract.statusCode()).isEqualTo(HttpStatus.OK.value());
@@ -76,22 +56,10 @@ public class MemberApiTest extends ApiTest {
                 .email("testEmail")
                 .password("testPassword2").build();
 
-        RestAssured.given().log().all()
-                .body(member)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .when()
-                .post("/api/member/sign-up")
-                .then()
-                .log().all().extract();
+        MemberStep.회원등록요청(member);
 
         //when
-        final ExtractableResponse<Response> extract = RestAssured.given().log().all()
-                .body(testMember)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .when()
-                .post("/api/member/login")
-                .then()
-                .log().all().extract();
+        final ExtractableResponse<Response> extract = MemberStep.로그인요청(testMember);
 
         //then
         assertThat(extract.statusCode()).isEqualTo(HttpStatus.UNAUTHORIZED.value());
