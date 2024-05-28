@@ -6,11 +6,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import sharemore.sharemoreserver.domain.item.Item;
 import sharemore.sharemoreserver.domain.item.ItemService;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @SpringBootTest
 public class ItemServiceTest {
 
-    @Autowired
-    ItemService itemService;
+    @Autowired ItemService itemService;
 
     @Test
     void 아이템_추가() {
