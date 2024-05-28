@@ -13,4 +13,8 @@ public class ItemService {
         return itemRepository.save(item);
     }
 
+    public Item findItemById(Long id) {
+        return itemRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 아이템이 존재하지 않습니다."));
+    }
 }
