@@ -32,6 +32,25 @@ public class ItemServiceTest {
 
     }
 
+    @Test
+    public void 아이템_ID로_조회() {
+        // given
+        Item item = Item.builder()
+                .title("아이템1")
+                .description("아이템1 설명")
+                .category("의류")
+                .price(10000)
+                .build();
+
+        Item savedItem = itemService.addItem(item);
+
+        // when
+        Item foundItem = itemService.findItemById(savedItem.getId());
+
+        // then
+        assertThat(foundItem).isEqualTo(savedItem);
+    }
+
 
 
 }
