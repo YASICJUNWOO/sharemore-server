@@ -1,7 +1,5 @@
 package sharemore.sharemoreserver.domain.item.service;
 
-import io.restassured.response.ExtractableResponse;
-import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,7 +9,6 @@ import sharemore.sharemoreserver.domain.item.Item;
 import sharemore.sharemoreserver.domain.item.ItemService;
 import sharemore.sharemoreserver.domain.member.Member;
 import sharemore.sharemoreserver.domain.member.service.MemberService;
-import sharemore.sharemoreserver.domain.member.service.MemberStep;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
