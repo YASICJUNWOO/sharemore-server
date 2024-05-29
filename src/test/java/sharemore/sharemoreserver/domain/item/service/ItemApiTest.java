@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import sharemore.sharemoreserver.ApiTest;
 import sharemore.sharemoreserver.domain.item.Item;
+import sharemore.sharemoreserver.domain.item.ItemStep;
 import sharemore.sharemoreserver.domain.item.dto.ItemRequest;
 import sharemore.sharemoreserver.domain.member.Member;
 import sharemore.sharemoreserver.domain.member.service.MemberStep;
@@ -38,13 +39,7 @@ public class ItemApiTest extends ApiTest {
 
 
         // when
-        ExtractableResponse<Response> extract = RestAssured.given().log().all()
-                .body(request)
-                .contentType("application/json")
-                .when()
-                .post("/api/item/add")
-                .then()
-                .log().all().extract();
+        ExtractableResponse<Response> extract = ItemStep.아이템등록요청(request);
 
         // then
         assertThat(extract.statusCode()).isEqualTo(HttpStatus.CREATED.value());
