@@ -74,5 +74,41 @@ public class ItemServiceTest {
         assertThat(foundItem).isEqualTo(savedItem);
     }
 
+    @Test
+    @Rollback
+    public void 아이템_수정() {
+
+        // given
+        Member owner = memberService.join(Member.builder()
+                .email("testEmail")
+                .password("testPassword")
+                .build());
+
+        Item item = Item.builder()
+                .title("아이템1")
+                .description("아이템1 설명")
+                .category("의류")
+                .price(10000)
+                .owner(owner)
+                .build();
+
+        Item savedItem = itemService.addItem(item);
+
+        // when
+        Item updatedItem = Item.builder()
+                .id(savedItem.getId())
+                .title("아이템2")
+                .description("아이템2 설명")
+                .category("가전제품")
+                .price(20000)
+                .owner(owner)
+                .build();
+
+        Item modifiedItem = itemService.updateItem(savedItem.getId(), updatedItem);
+
+        // then
+        assertThat(modifiedItem).isEqualTo(updatedItem);
+    }
+
 
 }
