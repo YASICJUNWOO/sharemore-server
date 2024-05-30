@@ -1,20 +1,12 @@
 package sharemore.sharemoreserver.domain.item;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import sharemore.sharemoreserver.domain.item.dto.ItemRequest;
 
-@Service
-@RequiredArgsConstructor
-public class ItemService {
+public interface ItemService {
 
-    private final ItemRepository itemRepository;
+    Item addItem(ItemRequest request);
 
-    public Item addItem(Item item) {
-        return itemRepository.save(item);
-    }
+    Item addItem(Item item);
 
-    public Item findItemById(Long id) {
-        return itemRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 아이템이 존재하지 않습니다."));
-    }
+    Item findItemById(Long id);
 }
