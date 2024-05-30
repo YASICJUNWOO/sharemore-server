@@ -45,4 +45,33 @@ public class ItemApiTest extends ApiTest {
         assertThat(extract.statusCode()).isEqualTo(HttpStatus.CREATED.value());
     }
 
+    @Test
+    public void 아이템_조회_API() {
+
+        // given
+        Member owner = Member.builder()
+                .email("testEmail")
+                .password("testPassword")
+                .build();
+
+        MemberStep.회원등록요청(owner);
+
+        ItemRequest request = ItemRequest.builder()
+                .title("아이템1")
+                .description("아이템1 설명")
+                .category("의류")
+                .price(10000)
+                .ownerEmail(owner.getEmail())
+                .build();
+
+        ExtractableResponse<Response> response = ItemStep.아이템등록요청(request);
+        Item item = response.as(Item.class);
+
+        // when
+        ExtractableResponse<Response> extract2 = ItemStep.아이템조회요청(item.getId());
+
+        // then
+        assertThat(extract2.statusCode()).isEqualTo(HttpStatus.OK.value());
+    }
+
 }

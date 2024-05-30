@@ -19,4 +19,11 @@ public class ItemStep {
                 .log().all().extract();
     }
 
+    public static ExtractableResponse<Response> 아이템조회요청(Long id) {
+        return RestAssured.given().log().all()
+                .when()
+                .get("/api/item/" + id)
+                .then()
+                .log().all().extract();
+    }
 }
