@@ -2,6 +2,7 @@ package sharemore.sharemoreserver.domain.item;
 
 import jakarta.persistence.*;
 import lombok.*;
+import sharemore.sharemoreserver.domain.item.dto.ItemRequest;
 import sharemore.sharemoreserver.domain.member.Member;
 
 @Entity
@@ -28,4 +29,10 @@ public class Item {
     @JoinColumn(name = "owner_id", nullable = false)
     private Member owner;
 
+    public void update(Item updatedItem) {
+        this.title = updatedItem.getTitle();
+        this.description = updatedItem.getDescription();
+        this.category = updatedItem.getCategory();
+        this.price = updatedItem.getPrice();
+    }
 }

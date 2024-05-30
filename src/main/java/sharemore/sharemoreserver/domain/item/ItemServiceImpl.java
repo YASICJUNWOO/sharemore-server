@@ -2,6 +2,7 @@ package sharemore.sharemoreserver.domain.item;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sharemore.sharemoreserver.domain.item.dto.ItemRequest;
 import sharemore.sharemoreserver.domain.member.Member;
 import sharemore.sharemoreserver.domain.member.service.MemberService;
@@ -29,6 +30,21 @@ public class ItemServiceImpl implements ItemService{
     public Item findItemById(Long id) {
         return itemRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 아이템이 존재하지 않습니다."));
+    }
+
+
+    @Override
+    @Transactional
+    public Item updateItem(Long id, ItemRequest updatedItem) {
+        return updateItem(id, updatedItem.toEntity());
+    }
+
+    @Override
+    @Transactional
+    public Item updateItem(Long id, Item updatedItem) {
+        Item item = findItemById(id);
+        item.update(updatedItem);
+        return item;
     }
 
 }
