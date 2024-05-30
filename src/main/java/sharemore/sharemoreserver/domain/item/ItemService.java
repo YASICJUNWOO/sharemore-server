@@ -9,4 +9,6 @@ public interface ItemService {
     Item addItem(Item item);
 
     Item findItemById(Long id);
+
+    Item updateItem(Long id, Item updatedItem);
 }

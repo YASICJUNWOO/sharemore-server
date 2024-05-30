@@ -28,4 +28,10 @@ public class Item {
     @JoinColumn(name = "owner_id", nullable = false)
     private Member owner;
 
+    public void update(Item updatedItem) {
+        this.title = updatedItem.title;
+        this.description = updatedItem.description;
+        this.category = updatedItem.category;
+        this.price = updatedItem.price;
+    }
 }

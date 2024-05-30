@@ -31,4 +31,11 @@ public class ItemServiceImpl implements ItemService{
                 .orElseThrow(() -> new IllegalArgumentException("해당 아이템이 존재하지 않습니다."));
     }
 
+    @Override
+    public Item updateItem(Long id, Item updatedItem) {
+        Item item = findItemById(id);
+        item.update(updatedItem);
+        return item;
+    }
+
 }
