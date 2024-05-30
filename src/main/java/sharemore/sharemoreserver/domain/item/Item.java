@@ -2,6 +2,7 @@ package sharemore.sharemoreserver.domain.item;
 
 import jakarta.persistence.*;
 import lombok.*;
+import sharemore.sharemoreserver.domain.item.dto.ItemRequest;
 import sharemore.sharemoreserver.domain.member.Member;
 
 @Entity
@@ -29,9 +30,9 @@ public class Item {
     private Member owner;
 
     public void update(Item updatedItem) {
-        this.title = updatedItem.title;
-        this.description = updatedItem.description;
-        this.category = updatedItem.category;
-        this.price = updatedItem.price;
+        this.title = updatedItem.getTitle();
+        this.description = updatedItem.getDescription();
+        this.category = updatedItem.getCategory();
+        this.price = updatedItem.getPrice();
     }
 }

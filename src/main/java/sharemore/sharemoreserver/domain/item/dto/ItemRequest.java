@@ -26,4 +26,13 @@ public class ItemRequest {
                 .build();
     }
 
+    public Item toEntity() {
+        return Item.builder()
+                .title(title)
+                .description(description)
+                .category(category)
+                .price(price)
+                .build();
+    }
+
 }

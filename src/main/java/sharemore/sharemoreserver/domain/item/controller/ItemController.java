@@ -27,4 +27,10 @@ public class ItemController {
         return ResponseEntity.status(HttpStatus.OK).body(item);
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<Item> updateItem(@PathVariable Long id, @RequestBody ItemRequest request) {
+        Item updatedItem = itemService.updateItem(id, request);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedItem);
+    }
+
 }
