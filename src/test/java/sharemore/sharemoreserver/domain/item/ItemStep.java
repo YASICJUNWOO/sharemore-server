@@ -26,4 +26,14 @@ public class ItemStep {
                 .then()
                 .log().all().extract();
     }
+
+    public static ExtractableResponse<Response> 아이템수정요청(Long id, ItemRequest updateRequest) {
+        return RestAssured.given().log().all()
+                .body(updateRequest)
+                .contentType("application/json")
+                .when()
+                .patch("/api/item/" + id)
+                .then()
+                .log().all().extract();
+    }
 }
