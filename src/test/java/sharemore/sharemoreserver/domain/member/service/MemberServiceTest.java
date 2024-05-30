@@ -1,7 +1,5 @@
 package sharemore.sharemoreserver.domain.member.service;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,7 +7,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import sharemore.sharemoreserver.domain.member.Member;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
 @SpringBootTest
@@ -59,6 +58,7 @@ class MemberServiceTest {
     }
 
     @Test
+    @Rollback
     public void 이메일로_회원찾기() {
         //given
         Member member = Member.builder()
@@ -74,6 +74,7 @@ class MemberServiceTest {
     }
 
     @Test
+    @Rollback
     public void 로그인() {
 
         //given
@@ -90,6 +91,7 @@ class MemberServiceTest {
     }
 
     @Test
+    @Rollback
     public void 로그인_실패() {
 
         //given
