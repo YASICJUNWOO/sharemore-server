@@ -47,4 +47,11 @@ public class ItemServiceImpl implements ItemService{
         return item;
     }
 
+    @Override
+    @Transactional
+    public void deleteItem(Long id) {
+        Item itemById = findItemById(id);
+        itemById.delete();
+    }
+
 }

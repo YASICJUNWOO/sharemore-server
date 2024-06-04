@@ -13,4 +13,6 @@ public interface ItemService {
     Item updateItem(Long id, ItemRequest updatedItem);
 
     Item updateItem(Long id, Item updatedItem);
+
+    void deleteItem(Long id);
 }
