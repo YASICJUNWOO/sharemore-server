@@ -1,10 +1,8 @@
 package sharemore.sharemoreserver.domain.reservation;
 
-import io.restassured.RestAssured;
 import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import sharemore.sharemoreserver.ApiTest;
@@ -15,7 +13,7 @@ import sharemore.sharemoreserver.domain.member.service.MemberStep;
 
 import java.time.LocalDateTime;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @Transactional
 public class ReservationApiTest extends ApiTest {
@@ -52,19 +50,11 @@ public class ReservationApiTest extends ApiTest {
                 .build();
 
         // when
-        ExtractableResponse<Response> response = RestAssured.given().log().all()
-                .contentType("application/json")
-                .body(reservationRequest)
-                .when()
-                .post("/api/reservation")
-                .then()
-                .log().all().extract();
+        ExtractableResponse<Response> response = ReservationStep.예약생성요청(reservationRequest);
 
         // then
         assertThat(response.statusCode()).isEqualTo(201);
 
     }
-
-
 
 }
