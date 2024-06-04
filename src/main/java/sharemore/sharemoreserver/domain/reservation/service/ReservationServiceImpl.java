@@ -2,7 +2,12 @@ package sharemore.sharemoreserver.domain.reservation.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import sharemore.sharemoreserver.domain.item.Item;
+import sharemore.sharemoreserver.domain.item.service.ItemService;
+import sharemore.sharemoreserver.domain.member.Member;
+import sharemore.sharemoreserver.domain.member.service.MemberService;
 import sharemore.sharemoreserver.domain.reservation.Reservation;
+import sharemore.sharemoreserver.domain.reservation.ReservationRequest;
 import sharemore.sharemoreserver.domain.reservation.repository.ReservationRepository;
 
 import java.time.LocalDateTime;
@@ -12,11 +17,22 @@ import java.time.LocalDateTime;
 public class ReservationServiceImpl implements ReservationService {
 
     private final ReservationRepository reservationRepository;
+    private final MemberService memberService;
+    private final ItemService itemService;
 
     @Override
     public Reservation addReservation(Reservation reservation) {
         validReservation(reservation.getStartDateTime(), reservation.getEndDateTime(), reservation.getItem().getId());
         return reservationRepository.save(reservation);
+    }
+
+    @Override
+    public Reservation addReservation(ReservationRequest reservationRequest) {
+        Item item = itemService.findItemById(reservationRequest.getItemId());
+        Member member = memberService.findByEmail(reservationRequest.getMemberEmail());
+
+        Reservation reservation = reservationRequest.toEntity(reservationRequest, item, member);
+        return addReservation(reservation);
     }
 
     @Override
