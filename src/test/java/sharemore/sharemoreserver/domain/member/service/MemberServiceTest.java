@@ -25,7 +25,10 @@ class MemberServiceTest {
         //given
         Member member = Member.builder()
                 .email("testEmail")
-                .password("testPassword").build();
+                .password("testPassword")
+                .name("testName")
+                .phone("010-1234-5678")
+                .build();
 
         //when
         Member savedMember = memberService.join(member);
@@ -42,11 +45,18 @@ class MemberServiceTest {
         //given
         Member member1 = Member.builder()
                 .email("testEmail")
-                .password("testPassword").build();
+                .password("testPassword")
+                .name("testName")
+                .phone("010-1234-5678")
+                .build();
+
 
         Member member2 = Member.builder()
                 .email("testEmail")
-                .password("testPassword").build();
+                .password("testPassword")
+                .name("testName")
+                .phone("010-1234-5678")
+                .build();
 
         //when
         memberService.join(member1);
@@ -63,7 +73,11 @@ class MemberServiceTest {
         //given
         Member member = Member.builder()
                 .email("testEmail")
-                .password("testPassword").build();
+                .password("testPassword")
+                .name("testName")
+                .phone("010-1234-5678")
+                .build();
+
 
         //when
         Member savedMember = memberService.join(member);
@@ -80,7 +94,11 @@ class MemberServiceTest {
         //given
         Member member = Member.builder()
                 .email("testEmail")
-                .password("testPassword").build();
+                .password("testPassword")
+                .name("testName")
+                .phone("010-1234-5678")
+                .build();
+
 
         //when
         memberService.join(member);
@@ -97,7 +115,11 @@ class MemberServiceTest {
         //given
         Member member = Member.builder()
                 .email("testEmail")
-                .password("testPassword").build();
+                .password("testPassword")
+                .name("testName")
+                .phone("010-1234-5678")
+                .build();
+
 
         //when
         memberService.join(member);
