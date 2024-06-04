@@ -15,4 +15,11 @@ public class ReservationServiceImpl implements ReservationService {
     public Reservation addReservation(Reservation reservation) {
         return reservationRepository.save(reservation);
     }
+
+    @Override
+    public Reservation findById(Long id) {
+        return reservationRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 예약이 존재하지 않습니다."));
+    }
+
 }
