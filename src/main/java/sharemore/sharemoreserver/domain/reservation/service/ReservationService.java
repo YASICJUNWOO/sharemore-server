@@ -1,6 +1,6 @@
-package sharemore.sharemoreserver.domain.reseration.service;
+package sharemore.sharemoreserver.domain.reservation.service;
 
-import sharemore.sharemoreserver.domain.reseration.Reservation;
+import sharemore.sharemoreserver.domain.reservation.Reservation;
 
 import java.time.LocalDateTime;
 

@@ -1,9 +1,9 @@
-package sharemore.sharemoreserver.domain.reseration.service;
+package sharemore.sharemoreserver.domain.reservation.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import sharemore.sharemoreserver.domain.reseration.Reservation;
-import sharemore.sharemoreserver.domain.reseration.repository.ReservationRepository;
+import sharemore.sharemoreserver.domain.reservation.Reservation;
+import sharemore.sharemoreserver.domain.reservation.repository.ReservationRepository;
 
 import java.time.LocalDateTime;
 

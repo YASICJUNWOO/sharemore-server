@@ -9,8 +9,7 @@ import sharemore.sharemoreserver.domain.item.Item;
 import sharemore.sharemoreserver.domain.item.service.ItemService;
 import sharemore.sharemoreserver.domain.member.Member;
 import sharemore.sharemoreserver.domain.member.service.MemberService;
-import sharemore.sharemoreserver.domain.reseration.Reservation;
-import sharemore.sharemoreserver.domain.reseration.service.ReservationService;
+import sharemore.sharemoreserver.domain.reservation.service.ReservationService;
 
 import java.time.LocalDateTime;
 

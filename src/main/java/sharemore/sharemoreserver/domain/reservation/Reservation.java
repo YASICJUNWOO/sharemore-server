@@ -1,4 +1,4 @@
-package sharemore.sharemoreserver.domain.reseration;
+package sharemore.sharemoreserver.domain.reservation;
 
 import jakarta.persistence.*;
 import lombok.*;
