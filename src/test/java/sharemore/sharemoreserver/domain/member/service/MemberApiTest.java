@@ -17,7 +17,10 @@ public class MemberApiTest extends ApiTest {
         //given
         Member member = Member.builder()
                 .email("testEmail")
-                .password("testPassword").build();
+                .password("testPassword")
+                .name("testName")
+                .phone("010-1234-5678")
+                .build();
 
         //when
         final ExtractableResponse<Response> extract = MemberStep.회원등록요청(member);
@@ -34,7 +37,10 @@ public class MemberApiTest extends ApiTest {
         //given
         Member member = Member.builder()
                 .email("testEmail")
-                .password("testPassword").build();
+                .password("testPassword")
+                .name("testName")
+                .phone("010-1234-5678")
+                .build();
 
         MemberStep.회원등록요청(member);
 
@@ -51,11 +57,17 @@ public class MemberApiTest extends ApiTest {
         //given
         Member member = Member.builder()
                 .email("testEmail")
-                .password("testPassword").build();
+                .password("testPassword")
+                .name("testName")
+                .phone("010-1234-5678")
+                .build();
 
         Member testMember = Member.builder()
                 .email("testEmail")
-                .password("testPassword2").build();
+                .password("testPassword2")
+                .name("testName")
+                .phone("010-1234-5678")
+                .build();
 
         MemberStep.회원등록요청(member);
 
