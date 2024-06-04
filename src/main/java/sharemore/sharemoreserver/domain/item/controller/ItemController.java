@@ -33,4 +33,10 @@ public class ItemController {
         return ResponseEntity.status(HttpStatus.OK).body(updatedItem);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteItem(@PathVariable(name = "id") Long id) {
+        itemService.deleteItem(id);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
 }

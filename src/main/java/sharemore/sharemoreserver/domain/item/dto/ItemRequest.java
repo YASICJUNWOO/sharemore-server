@@ -1,12 +1,16 @@
 package sharemore.sharemoreserver.domain.item.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import sharemore.sharemoreserver.domain.item.Item;
 import sharemore.sharemoreserver.domain.member.Member;
 
 @Getter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ItemRequest {
 
     private String title;
