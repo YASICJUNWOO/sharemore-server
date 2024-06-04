@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sharemore.sharemoreserver.domain.item.Item;
-import sharemore.sharemoreserver.domain.item.ItemService;
+import sharemore.sharemoreserver.domain.item.service.ItemService;
 import sharemore.sharemoreserver.domain.item.dto.ItemRequest;
 
 @RestController

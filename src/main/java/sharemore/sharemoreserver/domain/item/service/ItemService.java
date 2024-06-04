@@ -1,5 +1,6 @@
-package sharemore.sharemoreserver.domain.item;
+package sharemore.sharemoreserver.domain.item.service;
 
+import sharemore.sharemoreserver.domain.item.Item;
 import sharemore.sharemoreserver.domain.item.dto.ItemRequest;
 
 public interface ItemService {
