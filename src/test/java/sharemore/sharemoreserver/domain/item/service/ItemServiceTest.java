@@ -110,5 +110,31 @@ public class ItemServiceTest {
         assertThat(modifiedItem).isEqualTo(updatedItem);
     }
 
+    @Test
+    @Rollback
+    public void 아이템_삭제() {
+
+        // given
+        Member owner = memberService.join(Member.builder()
+                .email("testEmail")
+                .password("testPassword")
+                .build());
+
+        Item item = Item.builder()
+                .title("아이템1")
+                .description("아이템1 설명")
+                .category("의류")
+                .price(10000)
+                .owner(owner)
+                .build();
+
+        Item savedItem = itemService.addItem(item);
+
+        // when
+        itemService.deleteItem(savedItem.getId());
+
+        // then
+        assertThat(savedItem.getIsDeleted()).isTrue();
+    }
 
 }
