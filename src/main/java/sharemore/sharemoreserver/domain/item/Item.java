@@ -30,7 +30,6 @@ public class Item {
     private Member owner;
 
     @Builder.Default
-    @NonNull
     private Boolean isDeleted = false;
 
     public void update(Item updatedItem) {

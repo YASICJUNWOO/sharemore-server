@@ -1,8 +1,10 @@
-package sharemore.sharemoreserver.domain.item;
+package sharemore.sharemoreserver.domain.item.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import sharemore.sharemoreserver.domain.item.Item;
+import sharemore.sharemoreserver.domain.item.repository.ItemRepository;
 import sharemore.sharemoreserver.domain.item.dto.ItemRequest;
 import sharemore.sharemoreserver.domain.member.Member;
 import sharemore.sharemoreserver.domain.member.service.MemberService;
