@@ -8,10 +8,10 @@ import sharemore.sharemoreserver.domain.member.Member;
 
 public class ItemStep {
 
-    public static ExtractableResponse<Response> 아이템등록요청(final ItemRequest member){
+    public static ExtractableResponse<Response> 아이템등록요청(ItemRequest itemRequest){
 
         return RestAssured.given().log().all()
-                .body(member)
+                .body(itemRequest)
                 .contentType("application/json")
                 .when()
                 .post("/api/item/add")
@@ -33,6 +33,14 @@ public class ItemStep {
                 .contentType("application/json")
                 .when()
                 .patch("/api/item/" + id)
+                .then()
+                .log().all().extract();
+    }
+
+    public static ExtractableResponse<Response> 아이템삭제요청(Long id) {
+        return RestAssured.given().log().all()
+                .when()
+                .delete("/api/item/" + id)
                 .then()
                 .log().all().extract();
     }
