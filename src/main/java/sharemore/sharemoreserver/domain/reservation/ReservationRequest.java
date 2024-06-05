@@ -17,15 +17,15 @@ public class ReservationRequest {
 
     private String memberEmail;
     private Long itemId;
-    private LocalDateTime startDateTime;
-    private LocalDateTime endDateTime;
+    private String startDateTime;
+    private String endDateTime;
 
     public Reservation toEntity(ReservationRequest reservationRequest, Item item, Member member) {
         return Reservation.builder()
                 .member(member)
                 .item(item)
-                .startDateTime(reservationRequest.startDateTime)
-                .endDateTime(reservationRequest.endDateTime)
+                .startDateTime(LocalDateTime.parse(reservationRequest.startDateTime))
+                .endDateTime((LocalDateTime.parse(reservationRequest.endDateTime)))
                 .build();
     }
 
