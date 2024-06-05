@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import sharemore.sharemoreserver.domain.member.Member;
+import sharemore.sharemoreserver.domain.member.repository.MemberRepository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -17,6 +18,9 @@ class MemberServiceTest {
 
     @Autowired
     MemberService memberService;
+
+    @Autowired
+    MemberRepository memberRepository;
 
     @Rollback
     @Test
@@ -127,6 +131,31 @@ class MemberServiceTest {
 
         //then
         assertThat(login).isFalse();
+    }
+
+    @Test
+    public void 모든_회원_조회() {
+        //given
+        Member member1 = Member.builder()
+                .email("testEmail1")
+                .password("testPassword1")
+                .name("testName1")
+                .phone("010-1234-5678")
+                .build();
+
+        Member member2 = Member.builder()
+                .email("testEmail2")
+                .password("testPassword2")
+                .name("testName2")
+                .phone("010-1234-5678")
+                .build();
+
+        //when
+        memberService.join(member1);
+        memberService.join(member2);
+
+        //then
+        assertThat(memberRepository.findAll().size()).isEqualTo(2);
     }
 
 }
