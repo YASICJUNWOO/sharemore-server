@@ -1,4 +1,4 @@
-package sharemore.sharemoreserver.domain.member;
+package sharemore.sharemoreserver.domain.member.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import sharemore.sharemoreserver.domain.member.Member;
 import sharemore.sharemoreserver.domain.member.service.MemberService;
 
 @RestController
