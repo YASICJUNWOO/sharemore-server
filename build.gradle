@@ -87,6 +87,8 @@ dependencies {
     testImplementation 'io.rest-assured:rest-assured:5.4.0'
     implementation 'com.google.guava:guava:r05'
 
+    // thymeleaf
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 }
 
 tasks.named('test') {
