@@ -29,4 +29,14 @@ public class MemberStep {
                 .log().all().extract();
     }
 
+    public static ExtractableResponse<Response> 모든회원조회요청(){
+
+        return RestAssured.given().log().all()
+                .when()
+                .get("/api/admin/member/all")
+                .then()
+                .log().all().extract();
+
+    }
+
 }
