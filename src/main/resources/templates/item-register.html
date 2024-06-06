@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>아이템 등록 페이지</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">sharemore</a>
+</nav>
+
+<div class="container mt-5">
+  <h2 class="mb-4">아이템 등록 페이지</h2>
+  <form id="itemForm">
+    <div class="form-group">
+      <label for="title">아이템 이름:</label>
+      <input type="text" class="form-control" id="title" name="title" required>
+    </div>
+    <div class="form-group">
+      <label for="description">아이템 설명:</label>
+      <textarea class="form-control" id="description" name="description" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="category">카테고리:</label>
+      <select class="form-control" id="category" name="category" required>
+        <option value="">선택하세요</option>
+        <option value="의류">의류</option>
+        <option value="가전">가전</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="price">가격:</label>
+      <input type="number" class="form-control" id="price" name="price" required>
+    </div>
+    <button type="submit" class="btn btn-primary">등록</button>
+  </form>
+</div>
+
+<script>
+  document.getElementById('itemForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const formData = {
+      title: document.getElementById('title').value,
+      description: document.getElementById('description').value,
+      category: document.getElementById('category').value,
+      price: document.getElementById('price').value,
+      ownerEmail: "testEmail"
+    };
+
+    fetch('http://localhost:8080/api/item/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+            .then(response => {
+              if (response.ok) {
+                alert('아이템 등록 성공');
+                window.location.href = '/items';
+              } else {
+                alert('아이템 등록 실패');
+              }
+            })
+            .catch(error => console.error('Error:', error));
+  });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>아이템 목록 페이지</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">sharemore</a>
+</nav>
+
+<div class="container mt-5">
+    <h2 class="mb-4">아이템 목록 페이지</h2>
+    <div class="row mb-3">
+        <div class="col-md-8">
+            <input type="text" id="searchInput" class="form-control" placeholder="검색...">
+        </div>
+        <div class="col-md-2">
+            <select id="sortSelect" class="form-control">
+                <option value="latest">최신 순</option>
+                <option value="oldest">오래된 순</option>
+                <option value="name">이름 순</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary" onclick="location.href='/item/register'">아이템 등록</button>
+        </div>
+    </div>
+    <table class="table table-striped" id="itemTable">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>이름</th>
+            <th>이메일</th>
+            <th>전화번호</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- 아이템 목록을 JavaScript를 통해 동적으로 렌더링 -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('http://localhost:8080/api/admin/member/all')
+            .then(response => response.json())
+            .then(data => renderItems(data))
+            .catch(error => console.error('Error:', error));
+    });
+
+    function renderItems(items) {
+        const itemTableBody = document.querySelector('#itemTable tbody');
+        itemTableBody.innerHTML = '';
+        items.forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                    <td>${item.id}</td>
+                    <td>${item.name}</td>
+                    <td>${item.email}</td>
+                    <td>${item.phone}</td>
+                `;
+            itemTableBody.appendChild(row);
+        });
+    }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.amazonaws.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

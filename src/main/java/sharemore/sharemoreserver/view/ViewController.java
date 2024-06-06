@@ -18,4 +18,14 @@ public class ViewController {
         return "members";
     }
 
+    @GetMapping("/items")
+    public String itemList() {
+        return "items";
+    }
+
+    @GetMapping("/item/register")
+    public String itemRegisterForm() {
+        return "item-register";
+    }
+
 }
