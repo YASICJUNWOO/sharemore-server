@@ -4,14 +4,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sharemore.sharemoreserver.domain.item.Item;
-import sharemore.sharemoreserver.domain.item.repository.ItemRepository;
 import sharemore.sharemoreserver.domain.item.dto.ItemRequest;
+import sharemore.sharemoreserver.domain.item.repository.ItemRepository;
 import sharemore.sharemoreserver.domain.member.Member;
 import sharemore.sharemoreserver.domain.member.service.MemberService;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
-public class ItemServiceImpl implements ItemService{
+public class ItemServiceImpl implements ItemService {
 
     private final ItemRepository itemRepository;
     private final MemberService memberService;
@@ -34,6 +36,10 @@ public class ItemServiceImpl implements ItemService{
                 .orElseThrow(() -> new IllegalArgumentException("해당 아이템이 존재하지 않습니다."));
     }
 
+    @Override
+    public List<Item> findAllItems() {
+        return itemRepository.findAll();
+    }
 
     @Override
     @Transactional
@@ -55,5 +61,4 @@ public class ItemServiceImpl implements ItemService{
         Item itemById = findItemById(id);
         itemById.delete();
     }
-
 }
