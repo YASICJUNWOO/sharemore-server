@@ -44,4 +44,12 @@ public class ItemStep {
                 .then()
                 .log().all().extract();
     }
+
+    public static ExtractableResponse<Response> 아이템전체조회요청() {
+        return RestAssured.given().log().all()
+                .when()
+                .get("/api/item")
+                .then()
+                .log().all().extract();
+    }
 }
