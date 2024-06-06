@@ -1,4 +1,4 @@
-package sharemore.sharemoreserver.domain.item.service;
+package sharemore.sharemoreserver.domain.item.api;
 
 import io.restassured.RestAssured;
 import io.restassured.response.ExtractableResponse;
