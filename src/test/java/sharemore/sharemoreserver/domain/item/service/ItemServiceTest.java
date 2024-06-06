@@ -9,6 +9,8 @@ import sharemore.sharemoreserver.domain.item.Item;
 import sharemore.sharemoreserver.domain.member.Member;
 import sharemore.sharemoreserver.domain.member.service.MemberService;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -134,6 +136,41 @@ public class ItemServiceTest {
 
         // then
         assertThat(savedItem.getIsDeleted()).isTrue();
+    }
+
+    @Test
+    public void 아이템_전체_조회(){
+
+        // given
+        Member owner = memberService.join(Member.builder()
+                .email("testEmail")
+                .password("testPassword")
+                .build());
+
+        Item item1 = Item.builder()
+                .title("아이템1")
+                .description("아이템1 설명")
+                .category("의류")
+                .price(10000)
+                .owner(owner)
+                .build();
+
+        Item item2 = Item.builder()
+                .title("아이템2")
+                .description("아이템2 설명")
+                .category("가전")
+                .price(20000)
+                .owner(owner)
+                .build();
+
+        Item savedItem1 = itemService.addItem(item1);
+        Item savedItem2 = itemService.addItem(item2);
+
+        // when
+        List<Item> items = itemService.findAllItems();
+
+        // then
+        assertThat(items).contains(savedItem1, savedItem2);
     }
 
 }
