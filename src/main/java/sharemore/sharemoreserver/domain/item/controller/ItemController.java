@@ -8,12 +8,20 @@ import sharemore.sharemoreserver.domain.item.Item;
 import sharemore.sharemoreserver.domain.item.service.ItemService;
 import sharemore.sharemoreserver.domain.item.dto.ItemRequest;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/item")
 public class ItemController {
 
     private final ItemService itemService;
+
+    @GetMapping
+    public ResponseEntity<List<Item>> getItems() {
+        List<Item> items = itemService.findAllItems();
+        return ResponseEntity.status(HttpStatus.OK).body(items);
+    }
 
     @PostMapping("/add")
     public ResponseEntity<Item> addItem(@RequestBody ItemRequest request) {
@@ -38,5 +46,4 @@ public class ItemController {
         itemService.deleteItem(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
-
 }

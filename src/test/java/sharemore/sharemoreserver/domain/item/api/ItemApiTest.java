@@ -1,4 +1,4 @@
-package sharemore.sharemoreserver.domain.item.service;
+package sharemore.sharemoreserver.domain.item.api;
 
 import io.restassured.RestAssured;
 import io.restassured.response.ExtractableResponse;
@@ -140,4 +140,40 @@ public class ItemApiTest extends ApiTest {
         assertThat(extract.statusCode()).isEqualTo(HttpStatus.OK.value());
     }
 
+    @Test
+    public void 아이템_전체_조회_API() {
+
+        // given
+        Member owner = Member.builder()
+                .email("testEmail")
+                .password("testPassword")
+                .build();
+
+        MemberStep.회원등록요청(owner);
+
+        ItemRequest request = ItemRequest.builder()
+                .title("아이템1")
+                .description("아이템1 설명")
+                .category("의류")
+                .price(10000)
+                .ownerEmail(owner.getEmail())
+                .build();
+
+        ItemRequest request2 = ItemRequest.builder()
+                .title("아이템2")
+                .description("아이템2 설명")
+                .category("가전")
+                .price(20000)
+                .ownerEmail(owner.getEmail())
+                .build();
+
+        ItemStep.아이템등록요청(request);
+        ItemStep.아이템등록요청(request2);
+
+        // when
+        ExtractableResponse<Response> extract = ItemStep.아이템전체조회요청();
+
+        // then
+        assertThat(extract.statusCode()).isEqualTo(HttpStatus.OK.value());
+    }
 }
